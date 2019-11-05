@@ -4,7 +4,10 @@ const BIP39 = require("bip39")
 function generateMnemonic(){
   return BIP39.generateMnemonic()
 }
-
+//generate Seed from mnemonic
+function generateSeed(mnemonic){
+  return BIP39.mnemonicToSeed(mnemonic)
+}
 var mnemonicVue = new Vue({
     el:"#app",
     data: {  
