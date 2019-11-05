@@ -1,5 +1,8 @@
 
-const BIP39 = require("bip39")
+const BIP39 = require("bip39");
+const hdkey = require('ethereumjs-wallet/hdkey');
+const Wallet = require('ethereumjs-wallet')
+
 // Generate a random mnemonic (uses crypto.randomBytes under the hood), defaults to 128-bits of entropy
 function generateMnemonic(){
   return BIP39.generateMnemonic()
@@ -8,6 +11,17 @@ function generateMnemonic(){
 function generateSeed(mnemonic){
   return BIP39.mnemonicToSeed(mnemonic)
 }
+// derive private key from Seed
+function generatePrivKey(mnemonic){
+  const seed = generateSeed(mnemonic)
+  return hdkey.fromMasterSeed(seed).derivePath(`m/44'/60'/0'/0/0`).getWallet().getPrivateKey()
+}
+// derive public key from private
+function derivePubKey(privKey){
+  const wallet = Wallet.fromPrivateKey(privKey)    
+  return wallet.getPublicKey()
+}
+
 var mnemonicVue = new Vue({
     el:"#app",
     data: {  
