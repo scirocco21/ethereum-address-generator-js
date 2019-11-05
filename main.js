@@ -36,6 +36,10 @@ function signTx(privKey, txData){
   return tx
 }
 
+function getSignerAddress(signedTx){
+  return "0x" + signedTx.getSenderAddress().toString('hex')
+}
+
 var mnemonicVue = new Vue({
     el:"#app",
     data: {  
