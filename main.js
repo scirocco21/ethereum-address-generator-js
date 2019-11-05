@@ -1,17 +1,9 @@
 
 const BIP39 = require("bip39")
-
-
-
-// Add functions here
-
-
-
-/*
-
-Do not edit code below this line.
-
-*/
+// Generate a random mnemonic (uses crypto.randomBytes under the hood), defaults to 128-bits of entropy
+function generateMnemonic(){
+  return BIP39.generateMnemonic()
+}
 
 var mnemonicVue = new Vue({
     el:"#app",
